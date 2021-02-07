@@ -92,7 +92,7 @@ def discord_messages(klist):
     '''
     Creates a Discord embedded message with a given KSK list.
     Paginate messages to work within Discord imposed constraints:
-     - 2000 characters (computer characters, not WoW characters =D) per message
+     - 2000 characters (computer characters, not WoW characters =D) per message.
      - 1024 characters per embed field.
 
     Parameters: klist (list): A single KSK list to post to Discord.
@@ -165,7 +165,7 @@ def main():
                     print(f'Could not parse KSK JSON data at {a.url}.')
                     continue
                 if not validate_ksk(data):
-                    print(f'Could not parse KSK JSON data.')
+                    print(f'Could not parse KSK JSON data at {a.url}.')
                     continue
                 ksk = parse_ksk(data)
                 for klist in ksk:
