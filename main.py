@@ -5,6 +5,7 @@ import requests
 import time
 from discord.ext import commands
 
+
 def parse_ksk(data):
     '''
     Parses the JSON output provided by the KSK Classic WoW Addon.
@@ -67,12 +68,15 @@ def parse_ksk(data):
 def validate_ksk(data):
     '''
     Validate that the JSON data is in the expected KSK format.
+    Check that we aren't getting spammed with too much data.
 
     Parameters: data (dict): KSK JSON data.
     Returns: True if data is valid. False if not valid.
     '''
+    list_size_max = 50
+    user_size_max = 1000
     try:
-        if all (
+        if not all (
             k in data['ksk']
             for k in (
                 'classes',
@@ -82,12 +86,21 @@ def validate_ksk(data):
                 'users'
             )
         ):
-            return True
-        else:
             return False
-    except KeyError:
+    except:
         return False
-
+    try:
+        list_size = len(data['ksk']['lists'])
+        user_size = 0
+        for l in data['ksk']['lists']:
+            if len(l['users']) > user_size:
+                user_size = len(l['users'])
+    except:
+        return False
+    if (user_size > user_size_max) or (list_size > list_size_max):
+        print(f'Amount of data sent was over the limit. Lists: {list_size} Users: {user_size}')
+        return False
+    return True 
 
 def discord_messages(klist):
     '''
@@ -126,10 +139,6 @@ def discord_messages(klist):
 
 
 def main():
-    token = os.getenv('DISCORD_TOKEN')
-    if not token:
-        print('Missing DISCORD_TOKEN in environment')
-        exit(1)
     bot = commands.Bot(
         command_prefix=commands.when_mentioned,
         description='Post a KSK list from an exported JSON string.',
@@ -144,38 +153,33 @@ def main():
             try:
                 data = json.loads(arg)
             except Exception as e:
-                print(e)
-                print(f'Could not parse KSK JSON data.')
-                return
-            if not validate_ksk(data):
-                print(f'Could not parse KSK JSON data.')
-                return
+                data = None
+                error = e
+        else:
+            a = ctx.message.attachments[0]
+            try:
+                response = requests.get(a.url)
+                data = response.json()
+            except Exception as e:
+                data = None
+                error = e
+        if not data: # TODO: Send errors as Discord private message maybe
+            print(f'Error retrieving or parsing JSON: {error}')
+        elif not validate_ksk(data):
+            print(f'This did not look like KSK data: {data}')
+        else:
             ksk = parse_ksk(data)
             for klist in ksk:
                 messages=discord_messages(klist)
                 for m in messages:
                     await ctx.send(embed=m)
                     time.sleep(1)
-        else:
-            for a in ctx.message.attachments:
-                try:
-                    response = requests.get(a.url)
-                    data = response.json()
-                except Exception as e:
-                    print(e)
-                    print(f'Could not parse KSK JSON data at {a.url}.')
-                    continue
-                if not validate_ksk(data):
-                    print(f'Could not parse KSK JSON data at {a.url}.')
-                    continue
-                ksk = parse_ksk(data)
-                for klist in ksk:
-                    messages=discord_messages(klist)
-                    for m in messages:
-                        await ctx.send(embed=m)
-                        time.sleep(1)
-        await ctx.message.delete() 
+            await ctx.message.delete()
 
+    token = os.getenv('DISCORD_TOKEN')
+    if not token:
+        print('Missing DISCORD_TOKEN in environment')
+        exit(1)
     bot.run(token)
 
 if __name__ == '__main__':
