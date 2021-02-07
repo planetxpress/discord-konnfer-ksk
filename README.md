@@ -1,4 +1,7 @@
 # KSK Classic Discord Bot
+
+![Example](images/ksk3.jpg)
+
 For Classic WoW guilds using the Konfer Suicide Kings loot system, this bot can post exported JSON results from the KSK addon to Discord.
 
 The intent of this bot is to allow easy viewing of KSK positions for guild members, and also reduce the overhead for raid leaders and members needing to keep all of their addons in sync whenever someone wants to see their KSK position.
@@ -25,11 +28,11 @@ If Discord tells you that your message is too large, simply click the **Upload**
 You must be a designated admin user in your guild's KSK system in order to export data.
 
 >Select the **Export** button in the **Config** tab.
-![](images/ksk1.jpg)
+![Instructions](images/ksk1.jpg)
 
 
 >Export either a single list (selected in the previous screen), or all your KSK lists, as **JSON**.
-![](images/ksk2.jpg)
+![Instructions](images/ksk2.jpg)
 
 
 ## Links and Notices
