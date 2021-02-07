@@ -28,11 +28,12 @@ If Discord tells you that your message is too large, simply click the **Upload**
 You must be a designated admin user in your guild's KSK system in order to export data.
 
 >Select the **Export** button in the **Config** tab.
-![Instructions](images/ksk1.jpg)
 
+>![Instructions](images/ksk1.jpg)
 
 >Export either a single list (selected in the previous screen), or all your KSK lists, as **JSON**.
-![Instructions](images/ksk2.jpg)
+
+>![Instructions](images/ksk2.jpg)
 
 
 ## Links and Notices
