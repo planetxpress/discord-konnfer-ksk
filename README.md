@@ -11,7 +11,7 @@ The intent of this bot is to allow easy viewing of KSK positions for guild membe
 
 ## Usage
 
-Ensure to tag/mention the bot user `@KSK` in Discord when using the following commands.
+Mention/tag the bot user `@KSK` when using the following commands.
 
 ### Command List
 
