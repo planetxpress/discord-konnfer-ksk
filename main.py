@@ -106,7 +106,7 @@ def discord_messages(klist):
             title=klist['name'],
             type='rich'
         )
-        m.set_thumbnail(url='https://i.imgur.com/xK7nbVL.jpg')
+        m.set_thumbnail(url='https://raw.githubusercontent.com/planetxpress/discord-ksk-classic/main/images/ksklogo.png')
         if index == 0:
             m.add_field(name='Last Updated', value=klist['updated'], inline=False)
         if len(klist['characters']) < index + paginate:

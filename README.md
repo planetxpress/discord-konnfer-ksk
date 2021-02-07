@@ -1,14 +1,14 @@
-# Classic WoW KSK Discord Bot
+# KSK Classic Discord Bot
 For Classic WoW guilds using the Konfer Suicide Kings loot system, this bot can post exported JSON results from the KSK addon to Discord.
 
-The intent of this bot is to allow easy viewing of KSK positions for guild members, which would also reduce the overhead and complexity for raid leaders/loot masters of needing to keep the addon in sync whenever guild members want to see their KSK positions.
+The intent of this bot is to allow easy viewing of KSK positions for guild members, which should also reduce the overhead and complexity for raid leaders/loot masters of needing to keep the addon in sync whenever guild members want to see their KSK positions.
 
 ## Installation
 [Click here](https://discord.com/api/oauth2/authorize?client_id=807655262961532938&permissions=26624&scope=bot) to add to your Discord server.
 
 ## Usage
 
-Mention the bot user `@KSK` in a channel the bot has access to followed by one of the available commands.
+Mention the bot user `@KSK` in a channel it has access to followed by one of the available commands.
 
 Command List:
 ```
@@ -17,7 +17,7 @@ Command List:
 @KSK help - Displays the Discord bot help message.
 ```
 
-For strings longer than 2,000 characters, simply click the **Upload** button when prompted by Discord. The bot can handle KSK data either directly in the message or accompanied by an uploaded text file.
+If Discord tells you that your message is too large, simply click the **Upload** button when prompted. The bot can handle KSK data either directly in the message or accompanied by an uploaded text file.
 
 ### Getting the string
 >Select the **Export** button in the **Config** tab. KSK only enables this tab for admin users.
