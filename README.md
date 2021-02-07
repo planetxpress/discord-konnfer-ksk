@@ -20,11 +20,14 @@ Command List:
 If Discord tells you that your message is too large, simply click the **Upload** button when prompted. The bot can handle KSK data either directly in the message or accompanied by an uploaded text file.
 
 ### Getting the string
->Select the **Export** button in the **Config** tab. KSK only enables this tab for admin users.
+
+You must be a designated admin user in your guild's KSK system in order to export data.
+
+>Select the **Export** button in the **Config** tab.
 ![](images/ksk1.jpg)
 
 
->Export the list selected in the previous screen, or all your KSK lists, as **JSON**.
+>Export either a single list (selected in the previous screen), or all your KSK lists, as **JSON**.
 ![](images/ksk2.jpg)
 
 
