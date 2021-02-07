@@ -10,12 +10,13 @@ The intent of this bot is to allow easy viewing of KSK positions for guild membe
 
 Mention the bot user `@KSK` in a channel it has access to followed by one of the available commands.
 
-Command List:
-```
-@KSK post - Copy and paste the string provided by the KSK addon following this command.
+### Command List
 
-@KSK help - Displays the Discord bot help message.
-```
+`@KSK post` Copy and paste the string provided by the KSK addon following this command.
+
+`@KSK help` Displays the Discord bot help message.
+
+### Notes
 
 If Discord tells you that your message is too large, simply click the **Upload** button when prompted. The bot can handle KSK data either directly in the message or accompanied by an uploaded text file.
 
