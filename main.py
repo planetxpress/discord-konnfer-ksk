@@ -73,7 +73,8 @@ def validate_ksk(data):
     '''
     try:
         if all (
-            k in data['ksk'] for k in (
+            k in data['ksk']
+            for k in (
                 'classes',
                 'date',
                 'lists',
