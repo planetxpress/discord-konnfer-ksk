@@ -21,7 +21,9 @@ Mention/tag the bot user `@KSK` when using the following commands.
 
 ### Notes
 
-If Discord tells you that your message is too large, simply click the **Upload** button when prompted. The bot can handle KSK data either directly in the message or accompanied by an uploaded text file.
+* Simply click the **Upload** button when prompted for strings that are larger than Discord's message limit.
+* The bot can accept either a string or uploaded text file accompanying the `@KSK post` command.
+* Large lists will be broken up into multiple messages due to Discord's message/embed limits. 
 
 ### Getting the string
 
