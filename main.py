@@ -118,6 +118,7 @@ def discord_messages(klist):
     paginate = 50
     while index <= len(klist['characters']):
         m = discord.Embed(
+            color=14007365,
             title=klist['name'],
             type='rich'
         )
