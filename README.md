@@ -23,7 +23,8 @@ Mention/tag the bot user `@KSK` when using the following commands.
 
 * Simply click the **Upload** button when prompted for strings that are larger than Discord's message limit.
 * The bot can accept either a string or uploaded text file accompanying the `@KSK post` command.
-* Large lists will be broken up into multiple messages due to Discord's message/embed limits. 
+* Large lists will be broken up into multiple messages due to Discord's message/embed limits.
+* Outdated lists are automatically purged when the same list is posted again in the same channel.
 
 ### Getting the string
 
@@ -36,7 +37,6 @@ Select the **Export** button in the **Config** tab.
 Export either a single list (selected in the previous screen), or all your KSK lists, as **JSON**.
 
 >![Instructions](images/ksk2.jpg)
-
 
 ## Links and Notices
 
