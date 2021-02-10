@@ -141,7 +141,7 @@ def discord_messages(klist):
 
 
 async def delete_old_list(ctx, *, kid: str):
-    messages = await ctx.channel.history(limit=50).flatten()
+    messages = await ctx.channel.history(limit=100).flatten()
     for m in messages:
         for e in m.embeds:
             if not e.footer:
