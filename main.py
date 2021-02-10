@@ -173,6 +173,13 @@ def main():
 
     @bot.command(name='post', help='Post a JSON file or string.')
     async def post(ctx, *, arg=None):
+    '''
+    Post KSK list from a string or file to Discord.
+    
+    Parameters:
+        ctx (object): discord.ext.commands.Context object.
+        arg (str): Optional message argument containing a KSK JSON string.
+    '''
         if arg:
             try:
                 data = json.loads(arg)
