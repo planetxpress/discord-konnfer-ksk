@@ -1,6 +1,7 @@
 import discord
 import json
 import os
+import random
 import requests
 import time
 from discord.ext import commands
@@ -48,6 +49,7 @@ def parse_ksk(data):
         k['characters'] = list()
         k['classes'] = list()
         k['name'] = klist['n']
+        k['id'] = klist['id']
         k['updated'] = f'{data["ksk"]["date"]} {data["ksk"]["time"]}'
 
         for uid in klist['users']:
@@ -113,10 +115,12 @@ def discord_messages(klist):
     Returns: messages (list): List of Discord message embed objects.
     '''
     messages = list()
+    color = random.randrange(0, 16777215) # Random accent color for this list.
     index = 0
     paginate = 50
     while index <= len(klist['characters']):
         m = discord.Embed(
+            color=color,
             title=klist['name'],
             type='rich'
         )
@@ -133,9 +137,21 @@ def discord_messages(klist):
         m.add_field(name='Name', value='\n'.join(characters), inline=True)
         m.add_field(name='Class', value='\n'.join(classes), inline=True)
         m.add_field(name='Position', value='\n'.join(positions), inline=True)
+        m.set_footer(text=f'ID: {klist["id"]}')
         messages.append(m)
         index += paginate
     return messages
+
+
+async def delete_old_list(ctx, *, kid: str):
+    messages = await ctx.channel.history(limit=100).flatten()
+    for m in messages:
+        for e in m.embeds:
+            if not e.footer:
+                continue
+            if kid in e.footer.text:
+                await m.delete()
+                time.sleep(1)
 
 
 def main():
@@ -170,6 +186,7 @@ def main():
         else:
             ksk = parse_ksk(data)
             for klist in ksk:
+                await delete_old_list(ctx, kid=klist['id'])
                 messages=discord_messages(klist)
                 for m in messages:
                     await ctx.send(embed=m)
@@ -181,6 +198,7 @@ def main():
         print('Missing DISCORD_TOKEN in environment')
         exit(1)
     bot.run(token)
+
 
 if __name__ == '__main__':
     main()
