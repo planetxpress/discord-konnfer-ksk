@@ -143,7 +143,15 @@ def discord_messages(klist):
     return messages
 
 
-async def delete_old_list(ctx, *, kid: str):
+async def delete_list(ctx, *, kid: str):
+    '''
+    Delete a KSK list matching a given list ID.
+
+    Parameters: 
+        ctx (object): discord.ext.commands.Context object.
+        kid (str): KSK list ID.
+    Returns: None
+    '''
     messages = await ctx.channel.history(limit=100).flatten()
     for m in messages:
         for e in m.embeds:
@@ -186,7 +194,7 @@ def main():
         else:
             ksk = parse_ksk(data)
             for klist in ksk:
-                await delete_old_list(ctx, kid=klist['id'])
+                await delete_list(ctx, kid=klist['id'])
                 messages=discord_messages(klist)
                 for m in messages:
                     await ctx.send(embed=m)
