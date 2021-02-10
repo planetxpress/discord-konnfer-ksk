@@ -1,6 +1,7 @@
 import discord
 import json
 import os
+import random
 import requests
 import time
 from discord.ext import commands
@@ -114,11 +115,12 @@ def discord_messages(klist):
     Returns: messages (list): List of Discord message embed objects.
     '''
     messages = list()
+    color = random.randrange(0, 16777215) # Random accent color for this list.
     index = 0
     paginate = 50
     while index <= len(klist['characters']):
         m = discord.Embed(
-            color=14007365,
+            color=color,
             title=klist['name'],
             type='rich'
         )
